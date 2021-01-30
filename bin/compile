@@ -32,37 +32,42 @@ install_system_deps() {
 	if [[ "$SUPPORTED_BROWSERS" == *"chromium"* ]]; then
 		cat << EOF >>$build_tmpdir/Aptfile
 # Chromium dependencies
+libwoff1
+libopus0
+libwebp6
+libwebpdemux2
+libenchant1c2a
+libgudev-1.0-0
+libsecret-1-0
+libhyphen0
+libgdk-pixbuf2.0-0
+libegl1
+libnotify4
+libxslt1.1
+libevent-2.1-6
+libgles2
+libvpx5
+libxcomposite1
+libatk1.0-0
+libatk-bridge2.0-0
+libepoxy0
+libgtk-3-0
+libharfbuzz-icu0
+libgstreamer-gl1.0-0
+libgstreamer-plugins-bad1.0-0
+gstreamer1.0-plugins-good
+gstreamer1.0-libav
 libnss3
 libxss1
 libasound2
 fonts-noto-color-emoji
-libgbm1
-EOF
-	fi
-
-	if [[ "$SUPPORTED_BROWSERS" == *"firefox"* ]]; then
-		cat << EOF >>$build_tmpdir/Aptfile
-# Firefox dependencies
+libxtst6
 libdbus-glib-1-2
 libxt6
-libsm6
-libice6
+ffmpeg
 EOF
 	fi
 
-	if [[ "$SUPPORTED_BROWSERS" == *"firefox"* || "$SUPPORTED_BROWSERS" == *"chromium"* ]]; then
-		cat << EOF >>$build_tmpdir/Aptfile
-# Needed by Firefox and Chromium
-libnotify4
-libgdk-pixbuf2.0-0
-libcairo-gobject2
-# needed for CR recordings and FF video playback
-ffmpeg
-libvpx5
-libpulse0
-libusb-1.0-0
-EOF
-	fi
 
 	cat << EOF >>$build_tmpdir/Aptfile
 # (Optional) XVFB if there's a need to run browsers in headful mode
